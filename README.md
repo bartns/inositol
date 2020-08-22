@@ -24,7 +24,7 @@
 - **transform.py:** Script to make tables and figures from diamond and bracken data.
 
 
-# STEPS
+# DOWNLOAD data and run DIAMOND
 ```
 #Download all screened fastq files from RAST using a list of RAST ids**
 mkdir -p screen.passed.fastq/fasta
