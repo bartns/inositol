@@ -4,9 +4,9 @@
 - Tools: curl, parallel
 - Python3
 - Python3 Packages: numpy, pandas, matplotlib, seaborn
-- DIAMOND: http://www.diamondsearch.org
-- KRAKEN: https://ccb.jhu.edu/software/kraken2/
-- BRACKEN: https://ccb.jhu.edu/software/bracken/
+- DIAMOND v0.9.22: http://www.diamondsearch.org
+- KRAKEN v2.0.9-beta: https://ccb.jhu.edu/software/kraken2/
+- BRACKEN v2.5: https://ccb.jhu.edu/software/bracken/
 - The files in this folder
 
 
