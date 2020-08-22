@@ -19,7 +19,7 @@
   
 
 - **Anaerostipes_bracken_abundance.tsv:** Abundances of Anaerostipus in the samples from bracken
-- **inositol_pathway_proteins.faa:** Protein sequencing of the inositol pathway. 
+- **inositol_pathway_proteins.faa:** Protein sequences of the inositol pathway. 
 - **inositol_SRR_diamond_0.4_counts.tsv:** Protein hits from diamond analysis.
 - **transform.py:** Script to make tables and figures from diamond and bracken data.
 
@@ -59,7 +59,7 @@ cat ../SRR_datasets | parallel -P1 'kraken2 --threads 1 --db KRAKEN2_STANDARD sc
 **BRACKEN**
 ```
 bracken-build -d ./KRAKEN2_STANDARD/ -t 1 -k 35 -l 350
-cat ../SRR| parallel -P1 'python Bracken-2.5/src/est_abundance.py -i {}_kraken2.report -k KRAKEN2_STANDARD/database350mers.kmer_distrib -o {}.report.bracken -t 1'
+cat ../SRR| parallel -P1 'python est_abundance.py -i {}_kraken2.report -k KRAKEN2_STANDARD/database350mers.kmer_distrib -o {}.report.bracken -t 1'
 
 # Lookup taxonID: 207244 (Genus Anaerostipes) in bracken's est_abundance.py report outputs
 grep "207244" *_bracken.report  | awk -F"[_|\t|:]" '{print $1"\t"$(4)"\t"$3}' > Anaerostipes_bracken_abundance.tsv
