@@ -19,7 +19,7 @@
   
 
 - **Anaerostipes_bracken_abundance.tsv:** Abundances of Anaerostipus in the samples from bracken
-- **inositol_pathway_proteins.faa:** Protein sequencing of the inositol pathway. 
+- **inositol_pathway_proteins.faa:** Protein sequences of the inositol pathway. 
 - **inositol_SRR_diamond_0.4_counts.tsv:** Protein hits from diamond analysis.
 - **transform.py:** Script to make tables and figures from diamond and bracken data.
 
@@ -50,16 +50,16 @@ cd diamond_out
 awk -F"\t" '{if($3>=40){print $2"\t"FILENAME"\t1" }}' *_diamondx_inositol.out | sort | uniq -c | awk '{print $2"\t"$3"\t"$1}' | sed 's/_diamondx_inositol.out//g' > ../inositol_SRR_diamond_0.4_counts.tsv
 ```
 
-# KRAKEN
+# KRAKEN and BRACKEN
 ***Set up kraken and bracken in your own enviroment and edit locations of files in commands below to make it work***
 ```
 kraken2-build --use-ftp --standard --threads 1 --db KRAKEN2_STANDARD
 cat ../SRR_datasets | parallel -P1 'kraken2 --threads 1 --db KRAKEN2_STANDARD screen.passed.fastq/fasta/{}.screen.fa --output {}_kraken2.out --report {}_kraken2.report'
 ```
-# BRACKEN
+**BRACKEN**
 ```
 bracken-build -d ./KRAKEN2_STANDARD/ -t 1 -k 35 -l 350
-cat ../SRR| parallel -P1 'python ~/programs/Bracken-2.5/src/est_abundance.py -i {}_kraken2.report -k KRAKEN2_STANDARD/database350mers.kmer_distrib -o {}.report.bracken -t 1'
+cat ../SRR| parallel -P1 'python est_abundance.py -i {}_kraken2.report -k KRAKEN2_STANDARD/database350mers.kmer_distrib -o {}.report.bracken -t 1'
 
 # Lookup taxonID: 207244 (Genus Anaerostipes) in bracken's est_abundance.py report outputs
 grep "207244" *_bracken.report  | awk -F"[_|\t|:]" '{print $1"\t"$(4)"\t"$3}' > Anaerostipes_bracken_abundance.tsv
