@@ -8,7 +8,6 @@ import matplotlib.pyplot as plt
 diamond_hit_counts = sys.argv[1]
 bracken_data_file = sys.argv[2]
 
-#diamond_counts = open("columns22.tsv","r").readlines()
 diamond_counts = open(diamond_hit_counts,"r").readlines()
 # create Pandas DataFrame from diamond hit counts
 df = pd.DataFrame()
