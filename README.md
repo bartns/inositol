@@ -1,6 +1,6 @@
 *Tested on Ubuntu 18.04*
 
-**Prerequisites:**
+**Requirements:**
 - Tools: curl, parallel
 - Python3
 - Python3 Packages: numpy, pandas, matplotlib, seaborn
